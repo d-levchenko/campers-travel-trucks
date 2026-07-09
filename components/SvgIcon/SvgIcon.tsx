@@ -1,7 +1,17 @@
 import logo from '@/assets/logo.svg';
+import rating from '@/assets/rating.svg';
+import location from '@/assets/location.svg';
+import engine from '@/assets/engine.svg';
+import transmission from '@/assets/transmission.svg';
+import form from '@/assets/form.svg';
 
 const icons = {
   mainLogo: logo,
+  rating: rating,
+  location: location,
+  transmission: transmission,
+  engine: engine,
+  form: form,
 };
 
 export type IconName = keyof typeof icons;

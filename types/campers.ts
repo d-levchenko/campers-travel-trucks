@@ -20,19 +20,19 @@ export interface Camper {
   consumption: string;
   transmission: string;
   engine: string;
-  amenities: Amenities[];
+  // amenities: Amenities;
   coverImage: string;
   totalReviews: number;
 }
 
-export interface Amenities {
-  ac: boolean;
-  bathroom: boolean;
-  kitchen: boolean;
-  tv: boolean;
-  radio: boolean;
-  refrigerator: boolean;
-  microwave: boolean;
-  gas: boolean;
-  water: boolean;
-}
+// export interface Amenities {
+//   ac: string;
+//   bathroom: string;
+//   kitchen: string;
+//   tv: string;
+//   radio: string;
+//   refrigerator: string;
+//   microwave: string;
+//   gas: string;
+//   water: string;
+// }
