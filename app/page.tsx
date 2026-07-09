@@ -1,66 +1,49 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Header from '@/components/Header/Header';
+import { Metadata } from 'next';
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
-}
+export const metadata: Metadata = {
+  title: 'Campers Travel Trucks',
+  description:
+    'Campers of your dreams. You can find everything you want in our catalog.',
+
+  applicationName: 'Campers Travel Trucks',
+
+  openGraph: {
+    title: 'Campers Travel Trucks',
+    description:
+      'Campers of your dreams. You can find everything you want in our catalog.',
+    siteName: 'Campers Travel Trucks',
+    locale: 'en_US',
+    type: 'website',
+    url: 'https://camper-trucks.netlify.app/',
+    images: [
+      {
+        url: '/images/hero.jpg',
+        width: 800,
+        height: 600,
+        alt: 'Campers Travel Trucks',
+      },
+    ],
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Campers Travel Trucks',
+    description:
+      'Campers of your dreams. You can find everything you want in our catalog.',
+    images: [
+      {
+        url: '/images/hero.jpg',
+        width: 800,
+        height: 600,
+        alt: 'Campers Travel Trucks',
+      },
+    ],
+  },
+};
+
+const Home = () => {
+  return <Header />;
+};
+
+export default Home;

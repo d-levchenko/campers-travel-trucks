@@ -1,0 +1,18 @@
+.header {
+  display: grid;
+  grid-template-columns: minmax(136px, 1fr) auto minmax(136px, 1fr);
+  align-items: center;
+
+  width: 1440px;
+  padding: 0 64px;
+  margin: 0 auto;
+
+  border-bottom: 1px solid var(--badges);
+  background: var(--inputs);
+}
+
+.logoLink {
+  grid-column: 1;
+  justify-self: start;
+  padding: 24px 0;
+}
