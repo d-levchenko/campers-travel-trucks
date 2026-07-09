@@ -2,8 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-
-  padding: 48px 64px 0 65px;
 }
 
 .item {

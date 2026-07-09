@@ -1,4 +1,5 @@
 import CamperList from '@/components/CamperList/CamperList';
+import FilterList from '@/components/FilterList/FilterList';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -40,7 +41,16 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  return <CamperList />;
+  return (
+    <main>
+      <section className="px-16 pt-12">
+        <div className="flex gap-16.25">
+          <FilterList />
+          <CamperList />
+        </div>
+      </section>
+    </main>
+  );
 };
 
 export default Page;

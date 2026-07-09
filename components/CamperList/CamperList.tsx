@@ -1,9 +1,9 @@
 import { getAllCampers } from '@/lib/api/campersApi';
 import type { Camper } from '@/types/campers';
 import Image from 'next/image';
+import SvgIcon from '../SvgIcon/SvgIcon';
 
 import css from './CamperList.module.css';
-import SvgIcon from '../SvgIcon/SvgIcon';
 
 const CamperList = async () => {
   const allCampers = await getAllCampers();
