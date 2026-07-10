@@ -43,11 +43,9 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <main>
-      <section className="px-16 pt-12">
-        <div className="flex gap-16.25">
-          <FilterList />
-          <CamperList />
-        </div>
+      <section className="px-16 pt-12 pb-13 flex gap-16.25">
+        <FilterList />
+        <CamperList />
       </section>
     </main>
   );

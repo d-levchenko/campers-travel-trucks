@@ -4,4 +4,140 @@
   font-size: 16px;
   line-height: 1.5;
   color: var(--gray);
+
+  margin-bottom: 8px;
+}
+
+.locationLabel {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+}
+
+.locSelect {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 0 20px 0 48px;
+  width: 312px;
+  height: 56px;
+
+  outline: none;
+
+  margin-bottom: 40px;
+}
+
+.filtersText {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--main);
+
+  margin-bottom: 24px;
+}
+
+.labelRadio {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+
+  margin-bottom: 8px;
+}
+
+.labelRadio:last-child {
+  margin-bottom: 0;
+}
+
+.searchBtn {
+  background: var(--grey-green);
+
+  border-radius: 200px;
+  width: 312px;
+  height: 56px;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--white);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--green-hover);
+  }
+}
+
+.clearBtn {
+  background: var(--white);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  border: 1px solid var(--gray-light);
+  border-radius: 200px;
+  width: 312px;
+  height: 56px;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--main);
+
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--grey-green);
+  }
+}
+
+.radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.iconWrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.circle {
+  display: block;
+}
+
+.dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 200ms ease;
+}
+
+.radio:checked + .iconWrapper .dot {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.radio:focus-visible + .iconWrapper {
+  outline: 2px solid #5b8cff;
+  outline-offset: 2px;
 }

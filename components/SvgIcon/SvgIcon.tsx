@@ -4,6 +4,10 @@ import location from '@/assets/location.svg';
 import engine from '@/assets/engine.svg';
 import transmission from '@/assets/transmission.svg';
 import form from '@/assets/form.svg';
+import searchLocation from '@/assets/searchLocation.svg';
+import closeIcon from '@/assets/close.svg';
+import dot from '@/assets/dot.svg';
+import circle from '@/assets/circle.svg';
 
 const icons = {
   mainLogo: logo,
@@ -12,6 +16,10 @@ const icons = {
   transmission: transmission,
   engine: engine,
   form: form,
+  searchLocation: searchLocation,
+  close: closeIcon,
+  dot: dot,
+  circle: circle,
 };
 
 export type IconName = keyof typeof icons;
