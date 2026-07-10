@@ -2,8 +2,8 @@
 
 import { FiltersResponse } from '@/types/campers';
 import SvgIcon from '@/components/SvgIcon/SvgIcon';
-import { usePathname, useRouter } from 'next/navigation';
-import { useRef } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 
 import css from './FilterForm.module.css';
 
@@ -15,6 +15,17 @@ const FilterForm = ({ data }: FilterFormProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const formRef = useRef<HTMLFormElement>(null);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const reset = () => formRef.current?.reset();
+
+    window.addEventListener('reset-filters', reset);
+
+    return () => {
+      window.removeEventListener('reset-filters', reset);
+    };
+  }, []);
 
   const handleClear = () => {
     formRef.current?.reset();
@@ -118,6 +129,7 @@ const FilterForm = ({ data }: FilterFormProps) => {
                   name="engine"
                   value={item}
                   className={css.radio}
+                  defaultChecked={searchParams.get('engine') === item}
                 />
 
                 <span className={css.iconWrapper}>
