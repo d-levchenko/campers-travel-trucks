@@ -1,6 +1,7 @@
 import CamperList from '@/components/CamperList/CamperList';
 import FilterList from '@/components/FilterList/FilterList';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Campers Travel Trucks - Catalog',
@@ -45,7 +46,10 @@ const Page = () => {
     <main>
       <section className="px-16 pt-12 pb-13 flex gap-16.25">
         <FilterList />
-        <CamperList />
+
+        <Suspense fallback={<p>Loading...</p>}>
+          <CamperList />
+        </Suspense>
       </section>
     </main>
   );
