@@ -22,8 +22,6 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
     refetchOnMount: false,
   });
 
-  console.log(details);
-
   return (
     <main>
       <div className={css.container}>
@@ -97,7 +95,7 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
                 .sort((a, b) => a.localeCompare(b))
                 .map((amenity: Amenities) => {
                   const formattedAmenity =
-                    amenity === 'ac'
+                    amenity === 'ac' || amenity === 'tv'
                       ? amenity.toUpperCase()
                       : amenity.charAt(0).toUpperCase() + amenity.slice(1);
 
