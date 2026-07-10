@@ -129,8 +129,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
+
   transform: translate(-50%, -50%) scale(0);
-  transition: transform 200ms ease;
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .radio:checked + .iconWrapper .dot {
@@ -138,6 +140,6 @@
 }
 
 .radio:focus-visible + .iconWrapper {
-  outline: 2px solid #5b8cff;
+  outline: 2px solid var(--grey-green);
   outline-offset: 2px;
 }
