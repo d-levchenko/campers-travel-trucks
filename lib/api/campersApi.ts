@@ -1,3 +1,5 @@
+import { Camper } from '@/types/campers';
+
 const BASE_URL = 'https://campers-api.goit.study';
 
 interface FetchCampersArgs {
@@ -39,6 +41,13 @@ export const getAllCampers = async ({
 
 export const getCampersFilters = async () => {
   const res = await fetch(`${BASE_URL}/campers/filters`);
+  const result = await res.json();
+
+  return result;
+};
+
+export const getCamperById = async (camperId: Camper['id']) => {
+  const res = await fetch(`${BASE_URL}/campers/${camperId}`);
   const result = await res.json();
 
   return result;

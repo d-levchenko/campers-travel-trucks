@@ -91,8 +91,7 @@ const CamperList = () => {
                 </div>
 
                 <p className={css.description}>
-                  The pictures shown here are example vehicles of the
-                  respective...
+                  {camper.description.split('\n').join(' ')}
                 </p>
 
                 <div className="flex gap-2">

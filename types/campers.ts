@@ -17,6 +17,7 @@ export interface Camper {
   name: string;
   price: number;
   rating: number;
+  description: string;
   location: string;
   form: string;
   length: string;
@@ -35,3 +36,44 @@ export interface FiltersResponse {
   transmissions: Transmission[];
   engines: Engine[];
 }
+
+export interface CamperDetails {
+  id: string;
+  name: string;
+  price: number;
+  rating: number;
+  totalReviews: number;
+  location: string;
+  description: string;
+  form: string;
+  length: string;
+  width: string;
+  height: string;
+  tank: string;
+  consumption: string;
+  transmission: string;
+  engine: string;
+  amenities: Amenities[];
+  gallery: Gallery[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Gallery {
+  id: string;
+  camperId: string;
+  thumb: string;
+  original: string;
+  order: number;
+}
+
+export type Amenities =
+  | 'ac'
+  | 'bathroom'
+  | 'kitchen'
+  | 'tv'
+  | 'radio'
+  | 'refrigerator'
+  | 'microwave'
+  | 'gas'
+  | 'water';
