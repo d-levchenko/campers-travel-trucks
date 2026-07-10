@@ -1,4 +1,7 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
+
+import css from './page.module.css';
 
 export const metadata: Metadata = {
   title: 'Campers Travel Trucks',
@@ -42,7 +45,20 @@ export const metadata: Metadata = {
 };
 
 const Home = () => {
-  return <div></div>;
+  return (
+    <main>
+      <section className="bg-[url('/images/hero.jpg')] h-190.25 bg-no-repeat bg-cover bg-center pl-16 pt-48.75">
+        <h1 className={css.title}>Campers of your dreams</h1>
+        <p className={css.description}>
+          You can find everything you want in our catalog
+        </p>
+
+        <Link href="/campers" className={css.link}>
+          View Now
+        </Link>
+      </section>
+    </main>
+  );
 };
 
 export default Home;

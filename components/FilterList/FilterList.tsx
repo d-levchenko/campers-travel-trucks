@@ -7,8 +7,6 @@ import css from './FilterList.module.css';
 const FilterList = async () => {
   const data: FiltersResponse = await getCampersFilters();
 
-  console.log(data);
-
   return (
     <aside className="rounded-[20px] bg-(--inputs) p-6 self-start">
       <form>
