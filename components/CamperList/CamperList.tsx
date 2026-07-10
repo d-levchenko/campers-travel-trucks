@@ -1,18 +1,50 @@
+'use client';
+
 import { getAllCampers } from '@/lib/api/campersApi';
 import type { Camper } from '@/types/campers';
 import Image from 'next/image';
 import SvgIcon from '../SvgIcon/SvgIcon';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'next/navigation';
 
 import css from './CamperList.module.css';
 
-const CamperList = async () => {
-  const allCampers = await getAllCampers();
-  const data = allCampers.campers;
+const CamperList = () => {
+  const searchParams = useSearchParams();
+
+  const location = searchParams.get('location') || '';
+  const form = searchParams.get('form') || '';
+  const transmission = searchParams.get('transmission') || '';
+  const engine = searchParams.get('engine') || '';
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ['campers', { location, form, transmission, engine }],
+
+      queryFn: ({ pageParam = 1 }) =>
+        getAllCampers({
+          page: pageParam,
+          perPage: 5,
+          location,
+          form,
+          transmission,
+          engine,
+        }),
+
+      initialPageParam: 1,
+      getNextPageParam: lastPage => {
+        return lastPage.page < lastPage.totalPages
+          ? lastPage.page + 1
+          : undefined;
+      },
+    });
+
+  const campers = data?.pages.flatMap(page => page.campers) ?? [];
 
   return (
     <div className="flex flex-col flex-1">
       <ul className={css.list}>
-        {data.map((camper: Camper) => (
+        {campers.map((camper: Camper) => (
           <li key={camper.id} className={css.item}>
             <Image
               src={camper.coverImage}
@@ -20,6 +52,7 @@ const CamperList = async () => {
               width={219}
               height={240}
               className={css.image}
+              loading="eager"
             />
 
             <div className="flex grow flex-col gap-6">
@@ -94,7 +127,14 @@ const CamperList = async () => {
         ))}
       </ul>
 
-      <button className={css.loadBtn}>Load more</button>
+      {hasNextPage && (
+        <button
+          className={css.loadBtn}
+          onClick={() => fetchNextPage()}
+          disabled={isFetchingNextPage}>
+          {isFetchingNextPage ? 'Loading...' : 'Load more'}
+        </button>
+      )}
     </div>
   );
 };
