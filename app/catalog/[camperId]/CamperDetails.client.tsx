@@ -6,10 +6,10 @@ import Image from 'next/image';
 import type { Amenities, Gallery } from '@/types/campers';
 import SvgIcon from '@/components/SvgIcon/SvgIcon';
 import fuelFormatter from '@/utils/fuelFormatter';
-
-import css from './CamperDetails.module.css';
 import floatFormatter from '@/utils/floatFormatter';
 import formatStringInTitleCase from '@/utils/formatStringInTitleCase';
+
+import css from './CamperDetails.module.css';
 
 interface CamperDetailsClientProps {
   id: string;

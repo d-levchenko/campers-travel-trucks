@@ -125,7 +125,7 @@ const CamperList = () => {
                   </div>
                 </div>
 
-                <Link href={`/campers/${camper.id}`} className={css.link}>
+                <Link href={`/catalog/${camper.id}`} className={css.link}>
                   Show more
                 </Link>
               </div>

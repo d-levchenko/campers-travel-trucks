@@ -19,8 +19,8 @@ const NavList = () => {
         </li>
         <li>
           <Link
-            href="/campers"
-            className={`${css.link} ${pathname === '/campers' && css.linkActive}`}>
+            href="/catalog"
+            className={`${css.link} ${pathname === '/catalog' && css.linkActive}`}>
             Catalog
           </Link>
         </li>
