@@ -4,9 +4,12 @@ import { getCamperById } from '@/lib/api/campersApi';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import type { Amenities, Gallery } from '@/types/campers';
+import SvgIcon from '@/components/SvgIcon/SvgIcon';
+import fuelFormatter from '@/utils/fuelFormatter';
 
 import css from './CamperDetails.module.css';
-import SvgIcon from '@/components/SvgIcon/SvgIcon';
+import floatFormatter from '@/utils/floatFormatter';
+import formatStringInTitleCase from '@/utils/formatStringInTitleCase';
 
 interface CamperDetailsClientProps {
   id: string;
@@ -24,7 +27,7 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
   return (
     <main>
       <div className={css.container}>
-        <div>
+        <div className="h-169 w-159.5">
           <Image
             src={details?.gallery[0].original}
             alt={details?.name}
@@ -40,7 +43,7 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
                 <Image
                   src={item.original}
                   alt={item.thumb}
-                  width={135}
+                  width={136}
                   height={144}
                   loading="eager"
                   className={css.images}
@@ -50,8 +53,8 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
           </ul>
         </div>
 
-        <div className="flex flex-col gap-4">
-          <div className={css.detailsWrapper}>
+        <div className="flex flex-col gap-4 w-162.5">
+          <div className={css.detailsWrapperUpper}>
             <h2 className={css.titleName}>{details?.name}</h2>
 
             <div className="flex gap-4 mb-4">
@@ -86,53 +89,62 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
             <p className={css.description}>{details?.description}</p>
           </div>
 
-          <div className={css.detailsWrapper}>
+          <div className={css.detailsWrapperBottom}>
             <h2 className={css.titleName}>Vehicle details</h2>
 
             <ul className={css.amenitiesList}>
-              {details?.amenities.map((amenity: Amenities) => (
-                <li key={amenity} className={css.amenityItem}>
-                  <p className={css.amenity}>{amenity}</p>
-                </li>
-              ))}
+              {[...details?.amenities]
+                .sort((a, b) => a.localeCompare(b))
+                .map((amenity: Amenities) => {
+                  const formattedAmenity =
+                    amenity === 'ac'
+                      ? amenity.toUpperCase()
+                      : amenity.charAt(0).toUpperCase() + amenity.slice(1);
+
+                  return (
+                    <li key={amenity} className={css.amenityItem}>
+                      <p className={css.amenity}>{formattedAmenity}</p>
+                    </li>
+                  );
+                })}
             </ul>
 
             <div className={css.featuresWrapper}>
-              <ul>
+              <ul className="flex flex-col gap-2">
                 <li>
                   <p className={css.featureText}>
                     Form
-                    <span>{details?.form}</span>
+                    <span>{formatStringInTitleCase(details?.form)}</span>
                   </p>
                 </li>
                 <li>
                   <p className={css.featureText}>
                     Length
-                    <span>{details?.length}</span>
+                    <span>{floatFormatter(details?.length, 1) + ' m'}</span>
                   </p>
                 </li>
                 <li>
                   <p className={css.featureText}>
                     Width
-                    <span>{details?.width}</span>
+                    <span>{floatFormatter(details?.width) + ' m'}</span>
                   </p>
                 </li>
                 <li>
                   <p className={css.featureText}>
                     Height
-                    <span>{details?.height}</span>
+                    <span>{floatFormatter(details?.height) + ' m'}</span>
                   </p>
                 </li>
                 <li>
                   <p className={css.featureText}>
                     Tank
-                    <span>{details?.tank}</span>
+                    <span>{parseInt(details?.tank) + ' l'}</span>
                   </p>
                 </li>
                 <li>
                   <p className={css.featureText}>
                     Consumption
-                    <span>{details?.consumption}</span>
+                    <span>{fuelFormatter(details?.consumption)}</span>
                   </p>
                 </li>
               </ul>

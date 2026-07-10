@@ -6,6 +6,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 
 import css from './FilterForm.module.css';
+import formatStringInTitleCase from '@/utils/formatStringInTitleCase';
 
 interface FilterFormProps {
   data: FiltersResponse;
@@ -109,12 +110,7 @@ const FilterForm = ({ data }: FilterFormProps) => {
                   />
                 </span>
 
-                <span>
-                  {item
-                    .split('_')
-                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(' ')}
-                </span>
+                <span>{formatStringInTitleCase(item)}</span>
               </label>
             ))}
           </fieldset>
