@@ -1,3 +1,9 @@
+type Form = 'alcove' | 'panel_van' | 'integrated' | 'semi_integrated';
+
+type Transmission = 'automatic' | 'manual';
+
+type Engine = 'diesel' | 'petrol' | 'hybrid' | 'electric';
+
 export interface AllCampers {
   page: number;
   perPage: number;
@@ -20,19 +26,12 @@ export interface Camper {
   consumption: string;
   transmission: string;
   engine: string;
-  // amenities: Amenities;
   coverImage: string;
   totalReviews: number;
 }
 
-// export interface Amenities {
-//   ac: string;
-//   bathroom: string;
-//   kitchen: string;
-//   tv: string;
-//   radio: string;
-//   refrigerator: string;
-//   microwave: string;
-//   gas: string;
-//   water: string;
-// }
+export interface FiltersResponse {
+  forms: Form[];
+  transmissions: Transmission[];
+  engines: Engine[];
+}

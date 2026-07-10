@@ -1,7 +1,14 @@
+import { getCampersFilters } from '@/lib/api/campersApi';
 import SvgIcon from '../SvgIcon/SvgIcon';
+import { FiltersResponse } from '@/types/campers';
+
 import css from './FilterList.module.css';
 
-const FilterList = () => {
+const FilterList = async () => {
+  const data: FiltersResponse = await getCampersFilters();
+
+  console.log(data);
+
   return (
     <aside className="rounded-[20px] bg-(--inputs) p-6 self-start">
       <form>
@@ -35,273 +42,102 @@ const FilterList = () => {
           <fieldset>
             <legend className={css.legend}>Camper form</legend>
 
-            <label className={css.labelRadio}>
-              <input
-                type="radio"
-                name="form"
-                value="alcove"
-                className={css.radio}
-              />
-
-              <span className={css.iconWrapper}>
-                <SvgIcon
-                  className={css.circle}
-                  name="circle"
-                  width={24}
-                  height={24}
+            {data.forms.map(item => (
+              <label key={item} className={css.labelRadio}>
+                <input
+                  type="radio"
+                  name="form"
+                  value={item}
+                  className={css.radio}
                 />
-                <SvgIcon
-                  className={css.dot}
-                  name="dot"
-                  width={14}
-                  height={14}
-                />
-              </span>
 
-              <span>Alcove</span>
-            </label>
+                <span className={css.iconWrapper}>
+                  <SvgIcon
+                    className={css.circle}
+                    name="circle"
+                    width={24}
+                    height={24}
+                  />
+                  <SvgIcon
+                    className={css.dot}
+                    name="dot"
+                    width={14}
+                    height={14}
+                  />
+                </span>
 
-            <label className={css.labelRadio}>
-              <input
-                type="radio"
-                name="form"
-                value="panel_van"
-                className={css.radio}
-              />
-
-              <span className={css.iconWrapper}>
-                <SvgIcon
-                  className={css.circle}
-                  name="circle"
-                  width={24}
-                  height={24}
-                />
-                <SvgIcon
-                  className={css.dot}
-                  name="dot"
-                  width={14}
-                  height={14}
-                />
-              </span>
-
-              <span>Panel Van</span>
-            </label>
-
-            <label className={css.labelRadio}>
-              <input
-                type="radio"
-                name="form"
-                value="integrated"
-                className={css.radio}
-              />
-
-              <span className={css.iconWrapper}>
-                <SvgIcon
-                  className={css.circle}
-                  name="circle"
-                  width={24}
-                  height={24}
-                />
-                <SvgIcon
-                  className={css.dot}
-                  name="dot"
-                  width={14}
-                  height={14}
-                />
-              </span>
-
-              <span>Integrated</span>
-            </label>
-
-            <label className={css.labelRadio}>
-              <input
-                type="radio"
-                name="form"
-                value="semi_integrated"
-                className={css.radio}
-              />
-
-              <span className={css.iconWrapper}>
-                <SvgIcon
-                  className={css.circle}
-                  name="circle"
-                  width={24}
-                  height={24}
-                />
-                <SvgIcon
-                  className={css.dot}
-                  name="dot"
-                  width={14}
-                  height={14}
-                />
-              </span>
-
-              <span>Semi Integrated</span>
-            </label>
+                <span>
+                  {item
+                    .split('_')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ')}
+                </span>
+              </label>
+            ))}
           </fieldset>
 
           <fieldset>
             <legend className={css.legend}>Engine</legend>
 
-            <label className={css.labelRadio}>
-              <input
-                type="radio"
-                name="engine"
-                value="diesel"
-                className={css.radio}
-              />
-
-              <span className={css.iconWrapper}>
-                <SvgIcon
-                  className={css.circle}
-                  name="circle"
-                  width={24}
-                  height={24}
+            {data.engines.map(item => (
+              <label key={item} className={css.labelRadio}>
+                <input
+                  type="radio"
+                  name="engine"
+                  value={item}
+                  className={css.radio}
                 />
-                <SvgIcon
-                  className={css.dot}
-                  name="dot"
-                  width={14}
-                  height={14}
-                />
-              </span>
 
-              <span>Diesel</span>
-            </label>
+                <span className={css.iconWrapper}>
+                  <SvgIcon
+                    className={css.circle}
+                    name="circle"
+                    width={24}
+                    height={24}
+                  />
+                  <SvgIcon
+                    className={css.dot}
+                    name="dot"
+                    width={14}
+                    height={14}
+                  />
+                </span>
 
-            <label className={css.labelRadio}>
-              <input
-                type="radio"
-                name="engine"
-                value="petrol"
-                className={css.radio}
-              />
-
-              <span className={css.iconWrapper}>
-                <SvgIcon
-                  className={css.circle}
-                  name="circle"
-                  width={24}
-                  height={24}
-                />
-                <SvgIcon
-                  className={css.dot}
-                  name="dot"
-                  width={14}
-                  height={14}
-                />
-              </span>
-
-              <span>Petrol</span>
-            </label>
-
-            <label className={css.labelRadio}>
-              <input
-                type="radio"
-                name="engine"
-                value="hybrid"
-                className={css.radio}
-              />
-
-              <span className={css.iconWrapper}>
-                <SvgIcon
-                  className={css.circle}
-                  name="circle"
-                  width={24}
-                  height={24}
-                />
-                <SvgIcon
-                  className={css.dot}
-                  name="dot"
-                  width={14}
-                  height={14}
-                />
-              </span>
-
-              <span>Hybrid</span>
-            </label>
-
-            <label className={css.labelRadio}>
-              <input
-                type="radio"
-                name="engine"
-                value="electric"
-                className={css.radio}
-              />
-
-              <span className={css.iconWrapper}>
-                <SvgIcon
-                  className={css.circle}
-                  name="circle"
-                  width={24}
-                  height={24}
-                />
-                <SvgIcon
-                  className={css.dot}
-                  name="dot"
-                  width={14}
-                  height={14}
-                />
-              </span>
-
-              <span>Electric</span>
-            </label>
+                <span>{item.charAt(0).toUpperCase() + item.slice(1)}</span>
+              </label>
+            ))}
           </fieldset>
 
           <fieldset>
             <legend className={css.legend}>Transmission</legend>
 
-            <label className={css.labelRadio}>
-              <input
-                type="radio"
-                name="transmission"
-                value="automatic"
-                className={css.radio}
-              />
-
-              <span className={css.iconWrapper}>
-                <SvgIcon
-                  className={css.circle}
-                  name="circle"
-                  width={24}
-                  height={24}
+            {data.transmissions.map(item => (
+              <label key={item} className={css.labelRadio}>
+                <input
+                  type="radio"
+                  name="transmission"
+                  value={item}
+                  className={css.radio}
                 />
-                <SvgIcon
-                  className={css.dot}
-                  name="dot"
-                  width={14}
-                  height={14}
-                />
-              </span>
 
-              <span>Automatic</span>
-            </label>
+                <span className={css.iconWrapper}>
+                  <SvgIcon
+                    className={css.circle}
+                    name="circle"
+                    width={24}
+                    height={24}
+                  />
+                  <SvgIcon
+                    className={css.dot}
+                    name="dot"
+                    width={14}
+                    height={14}
+                  />
+                </span>
 
-            <label className={css.labelRadio}>
-              <input
-                type="radio"
-                name="transmission"
-                value="manual"
-                className={css.radio}
-              />
-
-              <span className={css.iconWrapper}>
-                <SvgIcon
-                  className={css.circle}
-                  name="circle"
-                  width={24}
-                  height={24}
-                />
-                <SvgIcon
-                  className={css.dot}
-                  name="dot"
-                  width={14}
-                  height={14}
-                />
-              </span>
-
-              <span>Manual</span>
-            </label>
+                <span>{item.charAt(0).toUpperCase() + item.slice(1)}</span>
+              </label>
+            ))}
           </fieldset>
         </div>
 

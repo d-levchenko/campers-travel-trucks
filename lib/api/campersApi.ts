@@ -6,3 +6,10 @@ export const getAllCampers = async () => {
 
   return result;
 };
+
+export const getCampersFilters = async () => {
+  const res = await fetch(`${BASE_URL}/campers/filters`);
+  const result = await res.json();
+
+  return result;
+};
