@@ -21,7 +21,7 @@ const FilterForm = ({ data }: FilterFormProps) => {
     router.push(pathname);
   };
 
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSearch = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -174,8 +174,10 @@ const FilterForm = ({ data }: FilterFormProps) => {
         </div>
 
         <div className="flex flex-col gap-4">
-          <button className={css.searchBtn}>Search</button>
-          <button className={css.clearBtn} onClick={handleClear}>
+          <button className={css.searchBtn} type="submit">
+            Search
+          </button>
+          <button className={css.clearBtn} type="button" onClick={handleClear}>
             <SvgIcon name="close" width={24} height={24} />
             Clear filters
           </button>
