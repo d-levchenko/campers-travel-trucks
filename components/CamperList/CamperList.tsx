@@ -7,6 +7,7 @@ import SvgIcon from '../SvgIcon/SvgIcon';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import CampersNotFound from '../CampersNotFound/CampersNotFound';
+import Link from 'next/link';
 
 import css from './CamperList.module.css';
 
@@ -125,7 +126,9 @@ const CamperList = () => {
                   </div>
                 </div>
 
-                <button className={css.button}>Show more</button>
+                <Link href={`/campers/${camper.id}`} className={css.link}>
+                  Show more
+                </Link>
               </div>
             </li>
           ))
