@@ -26,7 +26,7 @@ const CamperList = () => {
       queryFn: ({ pageParam = 1 }) =>
         getAllCampers({
           page: pageParam,
-          perPage: 5,
+          perPage: 4,
           location,
           form,
           transmission,
@@ -125,7 +125,11 @@ const CamperList = () => {
                   </div>
                 </div>
 
-                <Link href={`/catalog/${camper.id}`} className={css.link}>
+                <Link
+                  href={`/catalog/${camper.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={css.link}>
                   Show more
                 </Link>
               </div>
