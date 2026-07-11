@@ -22,11 +22,11 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
     <main>
       <div className={css.container}>
         <div className="h-169 w-159.5">
-          <DetailsLeftSide details={details} />
+          {details && <DetailsLeftSide details={details} />}
         </div>
 
         <div className="flex flex-col gap-4 w-162.5">
-          <DetailsRightSide details={details} />
+          {details && <DetailsRightSide details={details} />}
         </div>
       </div>
     </main>
