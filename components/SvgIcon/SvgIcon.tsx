@@ -8,6 +8,7 @@ import searchLocation from '@/assets/searchLocation.svg';
 import closeIcon from '@/assets/close.svg';
 import dot from '@/assets/dot.svg';
 import circle from '@/assets/circle.svg';
+import warning from '@/assets/warning.svg';
 
 const icons = {
   mainLogo: logo,
@@ -20,6 +21,7 @@ const icons = {
   close: closeIcon,
   dot: dot,
   circle: circle,
+  warning: warning,
 };
 
 export type IconName = keyof typeof icons;
