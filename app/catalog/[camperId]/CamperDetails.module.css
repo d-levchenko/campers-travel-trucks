@@ -1,6 +1,10 @@
 .container {
-  padding: 64px 64px 278px;
-
   display: flex;
   gap: 24px;
+
+  margin-bottom: 88px;
+}
+
+.main {
+  padding: 64px 64px 278px;
 }

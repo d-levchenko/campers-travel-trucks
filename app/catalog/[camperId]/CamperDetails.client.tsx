@@ -1,9 +1,9 @@
 'use client';
 
-import { getCamperById } from '@/lib/api/campersApi';
+import { getCamperById, getReviewsByCamperId } from '@/lib/api/campersApi';
 import { useQuery } from '@tanstack/react-query';
-import DetailsLeftSide from '@/components/DetailsLeftSide/DetailsLeftSide';
-import DetailsRightSide from '@/components/DetailsRightSide/DetailsRightSide';
+import DetailsUpperPart from '@/components/DetailsUpperPart/DetailsUpperPart';
+import DetailsBottomPart from '@/components/DetailsBottomPart/DetailsBottomPart';
 
 import css from './CamperDetails.module.css';
 
@@ -12,23 +12,25 @@ interface CamperDetailsClientProps {
 }
 
 const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
-  const { data: details } = useQuery({
+  const { data: camper } = useQuery({
     queryKey: ['camper', id],
     queryFn: () => getCamperById(id),
-    refetchOnMount: false,
   });
 
-  return (
-    <main>
-      <div className={css.container}>
-        <div className="h-169 w-159.5">
-          {details && <DetailsLeftSide details={details} />}
-        </div>
+  const { data: reviews } = useQuery({
+    queryKey: ['reviews', id],
+    queryFn: () => getReviewsByCamperId(id),
+  });
 
-        <div className="flex flex-col gap-4 w-162.5">
-          {details && <DetailsRightSide details={details} />}
-        </div>
+  console.log(reviews);
+
+  return (
+    <main className={css.main}>
+      <div className={css.container}>
+        {camper && <DetailsUpperPart details={camper} />}
       </div>
+
+      <div>{reviews && <DetailsBottomPart details={reviews} />}</div>
     </main>
   );
 };

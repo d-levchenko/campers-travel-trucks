@@ -4,14 +4,14 @@ import Image from 'next/image';
 import { CamperDetails } from '@/types/campers';
 import useEmblaCarousel from 'embla-carousel-react';
 
-import css from './DetailsLeftSide.module.css';
+import css from './DetailsLeftUpperSide.module.css';
 import { useEffect, useState } from 'react';
 
-interface DetailsLeftSideProps {
+interface DetailsLeftUpperSideProps {
   details: CamperDetails;
 }
 
-const DetailsLeftSide = ({ details }: DetailsLeftSideProps) => {
+const DetailsLeftUpperSide = ({ details }: DetailsLeftUpperSideProps) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     dragFree: false,
@@ -77,4 +77,4 @@ const DetailsLeftSide = ({ details }: DetailsLeftSideProps) => {
   );
 };
 
-export default DetailsLeftSide;
+export default DetailsLeftUpperSide;

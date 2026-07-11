@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review {
+  background: var(--inputs);
+
+  border-radius: 16px;
+  padding: 16px;
+  max-width: 623px;
+  width: 100%;
+}
+
+.reviewerName {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main);
+}
+
+.comment {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.imgFallback {
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+
+  background: var(--white);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: var(--grey-green);
+}

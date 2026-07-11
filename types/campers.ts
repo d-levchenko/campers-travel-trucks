@@ -87,6 +87,4 @@ export interface Review {
   createdAt: string;
 }
 
-export interface ReviewsResponse {
-  reviews: Review[];
-}
+export type ReviewsResponse = Review[];

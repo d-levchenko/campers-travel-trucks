@@ -1,16 +1,16 @@
 import { Amenities, CamperDetails } from '@/types/campers';
-import SvgIcon from '../SvgIcon/SvgIcon';
+import SvgIcon from '../../SvgIcon/SvgIcon';
 import formatStringInTitleCase from '@/utils/formatStringInTitleCase';
 import floatFormatter from '@/utils/floatFormatter';
 import fuelFormatter from '@/utils/fuelFormatter';
 
-import css from './DetailsRightSide.module.css';
+import css from './DetailsRightUpperSide.module.css';
 
-interface DetailsRightSideProps {
+interface DetailsRightUpperSideProps {
   details: CamperDetails;
 }
 
-const DetailsRightSide = ({ details }: DetailsRightSideProps) => {
+const DetailsRightUpperSide = ({ details }: DetailsRightUpperSideProps) => {
   return (
     <>
       <div className={css.detailsWrapperUpper}>
@@ -113,4 +113,4 @@ const DetailsRightSide = ({ details }: DetailsRightSideProps) => {
   );
 };
 
-export default DetailsRightSide;
+export default DetailsRightUpperSide;

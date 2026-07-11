@@ -1,4 +1,4 @@
-import { getCamperById } from '@/lib/api/campersApi';
+import { getCamperById, getReviewsByCamperId } from '@/lib/api/campersApi';
 import {
   dehydrate,
   HydrationBoundary,
@@ -60,10 +60,17 @@ const CamperDetailsPage = async ({ params }: CamperDetailsPageParams) => {
 
   const { camperId } = await params;
 
-  await queryClient.prefetchQuery({
-    queryKey: ['camper', camperId],
-    queryFn: () => getCamperById(camperId),
-  });
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: ['camper', camperId],
+      queryFn: () => getCamperById(camperId),
+    }),
+
+    queryClient.prefetchQuery({
+      queryKey: ['reviews', camperId],
+      queryFn: () => getReviewsByCamperId(camperId),
+    }),
+  ]);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
