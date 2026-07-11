@@ -88,3 +88,8 @@ export interface Review {
 }
 
 export type ReviewsResponse = Review[];
+
+export interface BookingRequest {
+  name: string;
+  email: string;
+}

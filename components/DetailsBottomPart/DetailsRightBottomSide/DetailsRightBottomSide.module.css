@@ -24,6 +24,12 @@
 
   outline: none;
 
+  font-family: var(--second-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--main);
+
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -103,8 +109,7 @@
 .error .label {
   opacity: 1;
 
-  top: 0;
-  transform: translateY(-50%);
+  top: -4px;
   background: #ffdfdf;
 
   border-radius: 8px;

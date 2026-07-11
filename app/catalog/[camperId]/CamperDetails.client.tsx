@@ -30,7 +30,9 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
 
       <div className="flex flex-col gap-12">
         <h2 className={css.title}>Reviews</h2>
-        {reviews && <DetailsBottomPart details={reviews} />}
+        {reviews && camper && (
+          <DetailsBottomPart camperId={camper} details={reviews} />
+        )}
       </div>
     </main>
   );

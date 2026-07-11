@@ -1,5 +1,6 @@
 import {
   AllCampers,
+  BookingRequest,
   Camper,
   CamperDetails,
   FiltersResponse,
@@ -15,6 +16,10 @@ interface FetchCampersArgs {
   form?: string;
   transmission?: string;
   engine?: string;
+}
+
+interface BookingResponse {
+  message: string;
 }
 
 export const getAllCampers = async ({
@@ -42,6 +47,7 @@ export const getAllCampers = async ({
   }
 
   const result = await res.json();
+
   return result;
 };
 
@@ -68,4 +74,25 @@ export const getReviewsByCamperId = async (
   const result = await res.json();
 
   return result;
+};
+
+export const sendBookingRequest = async (
+  camperId: Camper['id'],
+  booking: BookingRequest,
+): Promise<BookingResponse> => {
+  const res = await fetch(`${BASE_URL}/campers/${camperId}/booking-requests`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(booking),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to send booking request: ${res.status}`);
+  }
+
+  const data = await res.json();
+
+  return data;
 };

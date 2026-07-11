@@ -2,16 +2,28 @@
 
 import SvgIcon from '@/components/SvgIcon/SvgIcon';
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { sendBookingRequest } from '@/lib/api/campersApi';
+import { BookingRequest, CamperDetails } from '@/types/campers';
 
 import css from './DetailsRightBottomSide.module.css';
 
-const DetailsRightBottomSide = () => {
+interface DetailsRightBottomSideProps {
+  camperId: CamperDetails;
+}
+
+const DetailsRightBottomSide = ({ camperId }: DetailsRightBottomSideProps) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
   const [errors, setErrors] = useState({
     name: '',
     email: '',
+  });
+
+  const mutation = useMutation({
+    mutationFn: (booking: BookingRequest) =>
+      sendBookingRequest(camperId.id, booking),
   });
 
   const validate = () => {
@@ -59,10 +71,12 @@ const DetailsRightBottomSide = () => {
     }
   };
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validate()) return;
+
+    mutation.mutate({ name, email });
 
     setName('');
     setEmail('');
@@ -110,6 +124,7 @@ const DetailsRightBottomSide = () => {
         <div className={`${css.field} ${errors.email ? css.error : ''}`}>
           <input
             id="email"
+            type="email"
             className={css.input}
             value={email}
             onChange={handleEmailChange}

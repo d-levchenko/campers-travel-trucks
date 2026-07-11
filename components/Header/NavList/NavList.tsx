@@ -20,7 +20,7 @@ const NavList = () => {
         <li>
           <Link
             href="/catalog"
-            className={`${css.link} ${pathname === '/catalog' && css.linkActive}`}>
+            className={`${css.link} ${(pathname === '/catalog' || pathname.startsWith('/catalog/')) && css.linkActive}`}>
             Catalog
           </Link>
         </li>
