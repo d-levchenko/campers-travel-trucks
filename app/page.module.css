@@ -48,10 +48,24 @@
   height: 761px;
   padding: 267px 0 0 64px;
 
-  background-image: url('../public/images/hero.jpg');
+  background-image: image-set(
+    url('/images/hero/hero.avif') type('image/avif') 1x,
+    url('/images/hero/hero@2x.avif') type('image/avif') 2x,
+
+    url('/images/hero/hero.webp') type('image/webp') 1x,
+    url('/images/hero/hero@2x.webp') type('image/webp') 2x,
+
+    url('/images/hero/hero.jpg') type('image/jpeg') 1x,
+    url('/images/hero/hero@2x.jpg') type('image/jpeg') 2x
+  );
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 
   width: 100%;
+}
+
+.main {
+  margin-top: -72px;
 }

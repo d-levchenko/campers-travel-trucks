@@ -8,6 +8,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import CampersNotFound from '../CampersNotFound/CampersNotFound';
 import Link from 'next/link';
+import Loader from '../Loader/Loader';
 
 import css from './CamperList.module.css';
 
@@ -19,7 +20,7 @@ const CamperList = () => {
   const transmission = searchParams.get('transmission') || '';
   const engine = searchParams.get('engine') || '';
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
     useInfiniteQuery({
       queryKey: ['campers', { location, form, transmission, engine }],
 
@@ -42,6 +43,8 @@ const CamperList = () => {
     });
 
   const campers = data?.pages.flatMap(page => page.campers) ?? [];
+
+  if (isFetching) return <Loader />;
 
   return (
     <div className="flex flex-col flex-1">

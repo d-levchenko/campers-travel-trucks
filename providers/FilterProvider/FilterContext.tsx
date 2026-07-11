@@ -1,6 +1,5 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface Filters {
@@ -10,13 +9,6 @@ interface Filters {
   transmission: string;
 }
 
-const initialFilters: Filters = {
-  location: '',
-  engine: '',
-  form: '',
-  transmission: '',
-};
-
 interface FilterContextType {
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
@@ -25,17 +17,21 @@ interface FilterContextType {
 
 const FilterContext = createContext<FilterContextType | null>(null);
 
-const FilterProvider = ({ children }: { children: ReactNode }) => {
-  const searchParams = useSearchParams();
+interface FilterProviderProps {
+  children: ReactNode;
+  initialFilters: Filters;
+}
 
-  const [filters, setFilters] = useState({
-    location: searchParams.get('location') ?? '',
-    engine: searchParams.get('engine') ?? '',
-    form: searchParams.get('form') ?? '',
-    transmission: searchParams.get('transmission') ?? '',
-  });
+const FilterProvider = ({ children, initialFilters }: FilterProviderProps) => {
+  const [filters, setFilters] = useState(initialFilters);
 
-  const clearFilters = () => setFilters(initialFilters);
+  const clearFilters = () =>
+    setFilters({
+      location: '',
+      engine: '',
+      form: '',
+      transmission: '',
+    });
 
   return (
     <FilterContext.Provider

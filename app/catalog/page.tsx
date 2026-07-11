@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     title: 'Campers Travel Trucks - Catalog',
     description:
       'Campers of your dreams. Check out our catalog and find the camper you need.',
-    url: 'https://camper-trucks.netlify.app/campers',
+    url: 'https://campers-travel-trucks-flax.vercel.app/catalog',
     images: [
       {
-        url: '/images/hero.jpg',
+        url: '/images/hero/hero.jpg',
         width: 800,
         height: 600,
         alt: 'Campers Travel Trucks - Catalog',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
       'Campers of your dreams. Check out our catalog and find the camper you need.',
     images: [
       {
-        url: '/images/hero.jpg',
+        url: '/images/hero/hero.jpg',
         width: 800,
         height: 600,
         alt: 'Campers Travel Trucks - Catalog',
@@ -42,11 +42,29 @@ export const metadata: Metadata = {
   },
 };
 
-const Page = () => {
+interface PageProps {
+  searchParams: Promise<{
+    location?: string;
+    engine?: string;
+    form?: string;
+    transmission?: string;
+  }>;
+}
+
+const Page = async ({ searchParams }: PageProps) => {
+  const params = await searchParams;
+
   return (
     <main>
       <section className="px-16 pt-12 pb-13 flex gap-16.25">
-        <FilterProvider>
+        <FilterProvider
+          key={JSON.stringify(params)}
+          initialFilters={{
+            location: params.location ?? '',
+            engine: params.engine ?? '',
+            form: params.form ?? '',
+            transmission: params.transmission ?? '',
+          }}>
           <FilterList />
 
           <Suspense fallback={<p>Loading...</p>}>

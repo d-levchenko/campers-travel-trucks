@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     siteName: 'Campers Travel Trucks',
     locale: 'en_US',
     type: 'website',
-    url: 'https://camper-trucks.netlify.app/',
+    url: 'https://campers-travel-trucks-flax.vercel.app/',
     images: [
       {
-        url: '/images/hero.jpg',
+        url: '/images/hero/hero.jpg',
         width: 800,
         height: 600,
         alt: 'Campers Travel Trucks',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       'Campers of your dreams. You can find everything you want in our catalog.',
     images: [
       {
-        url: '/images/hero.jpg',
+        url: '/images/hero/hero.jpg',
         width: 800,
         height: 600,
         alt: 'Campers Travel Trucks',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 
 const Home = () => {
   return (
-    <main>
+    <main className={css.main}>
       <section className={css.section}>
         <h1 className={css.title}>Campers of your dreams</h1>
         <p className={css.description}>
