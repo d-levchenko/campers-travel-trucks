@@ -85,7 +85,9 @@ const CamperList = () => {
                         height={16}
                         className={css.locationIcon}
                       />
-                      <p className={css.location}>{camper.location}</p>
+                      <p className={css.location}>
+                        {camper.location.split(', ').reverse().join(', ')}
+                      </p>
                     </div>
                   </div>
                 </div>

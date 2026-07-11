@@ -37,7 +37,9 @@ const DetailsRightSide = ({ details }: DetailsRightSideProps) => {
               height={16}
               className="fill-(--location)"
             />
-            <p className={css.location}>{details?.location}</p>
+            <p className={css.location}>
+              {details?.location.split(', ').reverse().join(', ')}
+            </p>
           </div>
         </div>
 
