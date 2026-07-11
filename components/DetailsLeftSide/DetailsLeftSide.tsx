@@ -25,7 +25,7 @@ const DetailsLeftSide = ({ details }: DetailsLeftSideProps) => {
             <Image
               src={item.original}
               alt={item.thumb}
-              width={136}
+              width={135}
               height={144}
               loading="eager"
               className={css.images}
