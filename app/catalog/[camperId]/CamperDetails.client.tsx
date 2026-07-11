@@ -22,15 +22,16 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
     queryFn: () => getReviewsByCamperId(id),
   });
 
-  console.log(reviews);
-
   return (
     <main className={css.main}>
       <div className={css.container}>
         {camper && <DetailsUpperPart details={camper} />}
       </div>
 
-      <div>{reviews && <DetailsBottomPart details={reviews} />}</div>
+      <div className="flex flex-col gap-12">
+        <h2 className={css.title}>Reviews</h2>
+        {reviews && <DetailsBottomPart details={reviews} />}
+      </div>
     </main>
   );
 };

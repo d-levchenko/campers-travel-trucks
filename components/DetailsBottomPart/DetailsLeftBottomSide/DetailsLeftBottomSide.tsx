@@ -1,6 +1,7 @@
 import { ReviewsResponse, Review } from '@/types/campers';
-import css from './DetailsLeftBottomSide.module.css';
 import SvgIcon from '@/components/SvgIcon/SvgIcon';
+
+import css from './DetailsLeftBottomSide.module.css';
 
 interface DetailsLeftBottomSideProps {
   details: ReviewsResponse;
