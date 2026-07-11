@@ -1,0 +1,26 @@
+.mainImage {
+  margin-bottom: 27px;
+
+  width: 638px;
+  height: 505px;
+
+  border-radius: 17px;
+  object-fit: cover;
+}
+
+.item {
+  flex-basis: calc((100% - 32px) / 3);
+}
+
+.images {
+  width: 135px;
+  height: 144px;
+
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.list {
+  display: flex;
+  gap: 32px;
+}

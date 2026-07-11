@@ -43,3 +43,15 @@
     background-color: var(--green-hover);
   }
 }
+
+.section {
+  height: 761px;
+  padding: 267px 0 0 64px;
+
+  background-image: url('../public/images/hero.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+}
