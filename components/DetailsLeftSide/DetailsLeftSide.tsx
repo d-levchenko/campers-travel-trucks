@@ -1,34 +1,72 @@
+'use client';
+
 import Image from 'next/image';
-import { CamperDetails, Gallery } from '@/types/campers';
+import { CamperDetails } from '@/types/campers';
+import useEmblaCarousel from 'embla-carousel-react';
 
 import css from './DetailsLeftSide.module.css';
+import { useEffect, useState } from 'react';
 
 interface DetailsLeftSideProps {
   details: CamperDetails;
 }
 
 const DetailsLeftSide = ({ details }: DetailsLeftSideProps) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
+    onSelect();
+
+    emblaApi.on('select', onSelect);
+
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi]);
+
   return (
     <>
-      <Image
-        src={details?.gallery[0].original}
-        alt={details?.name}
-        width={638}
-        height={505}
-        loading="eager"
-        className={css.mainImage}
-      />
+      <div className={css.embla} ref={emblaRef}>
+        <div className={css.emblaContainer}>
+          {details.gallery.map(item => (
+            <div className={css.emblaSlide} key={item.id}>
+              <Image
+                src={item.original}
+                alt={details.name}
+                width={638}
+                height={505}
+                className={css.mainImage}
+                loading="eager"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
 
       <ul className={css.list}>
-        {details?.gallery.map((item: Gallery) => (
-          <li key={item.id} className={css.item}>
+        {details.gallery.map((item, index) => (
+          <li
+            key={item.id}
+            onClick={() => emblaApi?.scrollTo(index)}
+            className={`${css.item} ${
+              index === selectedIndex ? css.active : ''
+            }`}>
             <Image
-              src={item.original}
-              alt={item.thumb}
+              src={item.thumb}
+              alt={details.name}
               width={135}
               height={144}
-              loading="eager"
               className={css.images}
+              loading="eager"
             />
           </li>
         ))}

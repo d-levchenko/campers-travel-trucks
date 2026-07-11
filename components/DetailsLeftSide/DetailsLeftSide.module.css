@@ -9,18 +9,45 @@
 }
 
 .item {
-  flex-basis: calc((100% - 32px) / 3);
-}
-
-.images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 135px;
   height: 144px;
 
   border-radius: 16px;
+  border: 3px solid transparent;
+
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.active {
+  border-color: var(--grey-green);
+}
+
+.images {
+  min-width: 135px;
+  height: 144px;
+
   object-fit: cover;
 }
 
 .list {
   display: flex;
   gap: 32px;
+  max-height: 144px;
+}
+
+.embla {
+  overflow: hidden;
+}
+
+.emblaContainer {
+  display: flex;
+}
+
+.emblaSlide {
+  flex: 0 0 100%;
 }
