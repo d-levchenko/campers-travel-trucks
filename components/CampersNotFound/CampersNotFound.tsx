@@ -3,15 +3,17 @@
 import Image from 'next/image';
 import SvgIcon from '../SvgIcon/SvgIcon';
 import { usePathname, useRouter } from 'next/navigation';
+import { useFilters } from '../../providers/FilterProvider/FilterContext';
 
 import css from './CampersNotFound.module.css';
 
 const CampersNotFound = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const { clearFilters } = useFilters();
 
   const handleClearAndSearch = () => {
-    window.dispatchEvent(new Event('reset-filters'));
+    clearFilters();
     router.push(pathname);
   };
 

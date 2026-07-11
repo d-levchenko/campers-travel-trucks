@@ -1,4 +1,5 @@
 import CamperList from '@/components/CamperList/CamperList';
+import FilterProvider from '@/providers/FilterProvider/FilterContext';
 import FilterList from '@/components/FilterList/FilterList';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
@@ -45,11 +46,13 @@ const Page = () => {
   return (
     <main>
       <section className="px-16 pt-12 pb-13 flex gap-16.25">
-        <FilterList />
+        <FilterProvider>
+          <FilterList />
 
-        <Suspense fallback={<p>Loading...</p>}>
-          <CamperList />
-        </Suspense>
+          <Suspense fallback={<p>Loading...</p>}>
+            <CamperList />
+          </Suspense>
+        </FilterProvider>
       </section>
     </main>
   );

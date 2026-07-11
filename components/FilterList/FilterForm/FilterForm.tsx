@@ -2,11 +2,11 @@
 
 import { FiltersResponse } from '@/types/campers';
 import SvgIcon from '@/components/SvgIcon/SvgIcon';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useRef } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import formatStringInTitleCase from '@/utils/formatStringInTitleCase';
+import { useFilters } from '@/providers/FilterProvider/FilterContext';
 
 import css from './FilterForm.module.css';
-import formatStringInTitleCase from '@/utils/formatStringInTitleCase';
 
 interface FilterFormProps {
   data: FiltersResponse;
@@ -15,68 +15,81 @@ interface FilterFormProps {
 const FilterForm = ({ data }: FilterFormProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const formRef = useRef<HTMLFormElement>(null);
-  const searchParams = useSearchParams();
 
-  useEffect(() => {
-    const reset = () => formRef.current?.reset();
+  const { filters, setFilters, clearFilters } = useFilters();
 
-    window.addEventListener('reset-filters', reset);
+  const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      location: e.target.value,
+    }));
+  };
 
-    return () => {
-      window.removeEventListener('reset-filters', reset);
-    };
-  }, []);
+  const handleCamperFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      form: e.target.value,
+    }));
+  };
+
+  const handleEngineChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      engine: e.target.value,
+    }));
+  };
+
+  const handleTransmissionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      transmission: e.target.value,
+    }));
+  };
 
   const handleClear = () => {
-    formRef.current?.reset();
+    clearFilters();
     router.push(pathname);
   };
 
   const handleSearch = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-
     const params = new URLSearchParams();
 
-    const location = formData.get('location')?.toString();
-    const form = formData.get('form')?.toString();
-    const engine = formData.get('engine')?.toString();
-    const transmission = formData.get('transmission')?.toString();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
 
-    if (location) params.set('location', location);
-    if (form) params.set('form', form);
-    if (engine) params.set('engine', engine);
-    if (transmission) params.set('transmission', transmission);
-
-    router.push(`${pathname}?${params.toString()}`);
+    router.push(`${pathname}?${params}`);
   };
 
   return (
     <aside className="rounded-[20px] bg-(--inputs) p-6 self-start">
-      <form ref={formRef} onSubmit={handleSearch}>
+      <form onSubmit={handleSearch}>
         <div className="flex flex-col gap-3">
           <label className={css.locationLabel} htmlFor="location">
             Location
           </label>
 
-          <div className="relative">
+          <div className={css.locationWrapper}>
             <SvgIcon
               name="location"
               width={20}
               height={20}
-              className="fill-(--main) absolute top-4.5 left-5 flex justify-center items-center"
+              className={`${css.locationIcon} ${
+                filters.location ? css.active : ''
+              }`}
             />
-            <label htmlFor="location">
-              <input
-                type="text"
-                name="location"
-                id="location"
-                className={css.locSelect}
-                placeholder="City"
-              />
-            </label>
+
+            <input
+              type="text"
+              name="location"
+              id="location"
+              value={filters.location}
+              onChange={handleLocationChange}
+              className={css.locSelect}
+              placeholder="City"
+            />
           </div>
         </div>
 
@@ -93,6 +106,8 @@ const FilterForm = ({ data }: FilterFormProps) => {
                   name="form"
                   value={item}
                   className={css.radio}
+                  checked={filters.form === item}
+                  onChange={handleCamperFormChange}
                 />
 
                 <span className={css.iconWrapper}>
@@ -125,7 +140,8 @@ const FilterForm = ({ data }: FilterFormProps) => {
                   name="engine"
                   value={item}
                   className={css.radio}
-                  defaultChecked={searchParams.get('engine') === item}
+                  checked={filters.engine === item}
+                  onChange={handleEngineChange}
                 />
 
                 <span className={css.iconWrapper}>
@@ -158,6 +174,8 @@ const FilterForm = ({ data }: FilterFormProps) => {
                   name="transmission"
                   value={item}
                   className={css.radio}
+                  checked={filters.transmission === item}
+                  onChange={handleTransmissionChange}
                 />
 
                 <span className={css.iconWrapper}>
