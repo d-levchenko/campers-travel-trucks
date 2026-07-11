@@ -1,4 +1,10 @@
-import { Camper } from '@/types/campers';
+import {
+  AllCampers,
+  Camper,
+  CamperDetails,
+  FiltersResponse,
+  ReviewsResponse,
+} from '@/types/campers';
 
 const BASE_URL = 'https://campers-api.goit.study';
 
@@ -18,7 +24,7 @@ export const getAllCampers = async ({
   form,
   transmission,
   engine,
-}: FetchCampersArgs = {}) => {
+}: FetchCampersArgs = {}): Promise<AllCampers> => {
   const params = new URLSearchParams({
     page: String(page),
     perPage: String(perPage),
@@ -39,15 +45,26 @@ export const getAllCampers = async ({
   return result;
 };
 
-export const getCampersFilters = async () => {
+export const getCampersFilters = async (): Promise<FiltersResponse> => {
   const res = await fetch(`${BASE_URL}/campers/filters`);
   const result = await res.json();
 
   return result;
 };
 
-export const getCamperById = async (camperId: Camper['id']) => {
+export const getCamperById = async (
+  camperId: Camper['id'],
+): Promise<CamperDetails> => {
   const res = await fetch(`${BASE_URL}/campers/${camperId}`);
+  const result = await res.json();
+
+  return result;
+};
+
+export const getReviewsByCamperId = async (
+  camperId: Camper['id'],
+): Promise<ReviewsResponse> => {
+  const res = await fetch(`${BASE_URL}/campers/${camperId}/reviews`);
   const result = await res.json();
 
   return result;

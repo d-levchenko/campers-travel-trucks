@@ -77,3 +77,16 @@ export type Amenities =
   | 'microwave'
   | 'gas'
   | 'water';
+
+export interface Review {
+  id: string;
+  camperId: string;
+  reviewer_name: string;
+  reviewer_rating: number;
+  comment: string;
+  createdAt: string;
+}
+
+export interface ReviewsResponse {
+  reviews: Review[];
+}

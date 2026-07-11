@@ -1,6 +1,4 @@
 .mainImage {
-  margin-bottom: 27px;
-
   width: 638px;
   height: 505px;
 
@@ -42,6 +40,8 @@
 
 .embla {
   overflow: hidden;
+  border-radius: 17px;
+  margin-bottom: 27px;
 }
 
 .emblaContainer {

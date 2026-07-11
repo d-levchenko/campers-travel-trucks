@@ -14,6 +14,8 @@ interface DetailsLeftSideProps {
 const DetailsLeftSide = ({ details }: DetailsLeftSideProps) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
+    dragFree: false,
+    duration: 25,
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
 

@@ -74,7 +74,7 @@ const FilterForm = ({ data }: FilterFormProps) => {
                 name="location"
                 id="location"
                 className={css.locSelect}
-                placeholder="Enter your location"
+                placeholder="City"
               />
             </label>
           </div>
