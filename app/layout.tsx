@@ -23,7 +23,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://camper-trucks.netlify.app/'),
+  metadataBase: new URL('http://campers-travel-trucks-flax.vercel.app/'),
 
   title: 'Campers Travel Trucks',
   description:
@@ -38,12 +38,12 @@ export const metadata: Metadata = {
     siteName: 'Campers Travel Trucks',
     locale: 'en_US',
     type: 'website',
-    url: 'https://camper-trucks.netlify.app/',
+    url: 'http://campers-travel-trucks-flax.vercel.app/',
     images: [
       {
         url: '/images/hero.jpg',
-        width: 800,
-        height: 600,
+        width: 1440,
+        height: 761,
         alt: 'Campers Travel Trucks',
       },
     ],
@@ -57,8 +57,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/hero.jpg',
-        width: 800,
-        height: 600,
+        width: 1440,
+        height: 761,
         alt: 'Campers Travel Trucks',
       },
     ],
