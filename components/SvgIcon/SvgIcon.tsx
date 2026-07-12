@@ -1,6 +1,7 @@
 import logo from '@/assets/logo.svg';
 import rating from '@/assets/rating.svg';
 import location from '@/assets/location.svg';
+import locationCamper from '@/assets/locationCamper.svg';
 import engine from '@/assets/engine.svg';
 import transmission from '@/assets/transmission.svg';
 import form from '@/assets/form.svg';
@@ -14,6 +15,7 @@ const icons = {
   mainLogo: logo,
   rating: rating,
   location: location,
+  locationCamper: locationCamper,
   transmission: transmission,
   engine: engine,
   form: form,
