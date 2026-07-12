@@ -50,6 +50,11 @@ export const getAllCampers = async ({
 
 export const getCampersFilters = async (): Promise<FiltersResponse> => {
   const res = await fetch(`${BASE_URL}/campers/filters`);
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch filters: ${res.statusText}`);
+  }
+
   const result = await res.json();
 
   return result;
@@ -68,6 +73,11 @@ export const getReviewsByCamperId = async (
   camperId: Camper['id'],
 ): Promise<ReviewsResponse> => {
   const res = await fetch(`${BASE_URL}/campers/${camperId}/reviews`);
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch reviews: ${res.statusText}`);
+  }
+
   const result = await res.json();
 
   return result;

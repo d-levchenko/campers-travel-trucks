@@ -3,9 +3,9 @@
 import Image from 'next/image';
 import { CamperDetails } from '@/types/campers';
 import useEmblaCarousel from 'embla-carousel-react';
+import { useEffect, useState } from 'react';
 
 import css from './DetailsLeftUpperSide.module.css';
-import { useEffect, useState } from 'react';
 
 interface DetailsLeftUpperSideProps {
   details: CamperDetails;
@@ -39,7 +39,7 @@ const DetailsLeftUpperSide = ({ details }: DetailsLeftUpperSideProps) => {
     <>
       <div className={css.embla} ref={emblaRef}>
         <div className={css.emblaContainer}>
-          {details.gallery.map(item => (
+          {details.gallery?.map(item => (
             <div className={css.emblaSlide} key={item.id}>
               <Image
                 src={item.original}
@@ -55,7 +55,7 @@ const DetailsLeftUpperSide = ({ details }: DetailsLeftUpperSideProps) => {
       </div>
 
       <ul className={css.list}>
-        {details.gallery.map((item, index) => (
+        {details.gallery?.map((item, index) => (
           <li
             key={item.id}
             onClick={() => emblaApi?.scrollTo(index)}

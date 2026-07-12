@@ -57,6 +57,8 @@ export interface CamperDetails {
   gallery: Gallery[];
   createdAt: string;
   updatedAt: string;
+
+  statusCode: number;
 }
 
 export interface Gallery {

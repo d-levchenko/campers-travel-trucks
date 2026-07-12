@@ -4,6 +4,7 @@ import { getCamperById, getReviewsByCamperId } from '@/lib/api/campersApi';
 import { useQuery } from '@tanstack/react-query';
 import DetailsUpperPart from '@/components/DetailsUpperPart/DetailsUpperPart';
 import DetailsBottomPart from '@/components/DetailsBottomPart/DetailsBottomPart';
+import ErrorPage from '../error';
 
 import css from './CamperDetails.module.css';
 
@@ -21,6 +22,8 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
     queryKey: ['reviews', id],
     queryFn: () => getReviewsByCamperId(id),
   });
+
+  if (camper?.statusCode === 404) return <ErrorPage />;
 
   return (
     <main className={css.main}>

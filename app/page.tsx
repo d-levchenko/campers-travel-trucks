@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/hero/hero.jpg',
-        width: 800,
-        height: 600,
+        width: 1440,
+        height: 761,
         alt: 'Campers Travel Trucks',
       },
     ],
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/hero/hero.jpg',
-        width: 800,
-        height: 600,
+        width: 1440,
+        height: 761,
         alt: 'Campers Travel Trucks',
       },
     ],
