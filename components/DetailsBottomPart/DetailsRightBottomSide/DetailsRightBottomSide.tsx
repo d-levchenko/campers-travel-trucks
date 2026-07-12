@@ -46,13 +46,13 @@ const DetailsRightBottomSide = ({ camperId }: DetailsRightBottomSideProps) => {
     if (!name.trim()) {
       newErrors.name = 'Please enter your name.';
     } else if (!/^[A-Za-z\s]+$/.test(name)) {
-      newErrors.name = 'Name should contain only letters.';
+      newErrors.name = 'Please enter your name.';
     }
 
     if (!email.trim()) {
       newErrors.email = 'Please enter your email.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = 'Please enter a valid email.';
+      newErrors.email = 'Please enter your email.';
     }
 
     setErrors(newErrors);

@@ -89,3 +89,7 @@ The application fetches camper data from the campers API and supports:
 
 This project is designed as a polished front-end experience for browsing and
 booking camper vans, with a clean layout and modern interaction patterns.
+
+## 📝 Author
+
+[Dmytro Levchenko](https://github.com/d-levchenko)

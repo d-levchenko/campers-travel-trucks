@@ -4,6 +4,7 @@
 
   border-radius: 17px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .item {
