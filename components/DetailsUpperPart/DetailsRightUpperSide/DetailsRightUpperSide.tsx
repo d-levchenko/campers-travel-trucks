@@ -32,7 +32,7 @@ const DetailsRightUpperSide = ({ details }: DetailsRightUpperSideProps) => {
 
           <div className="flex items-center gap-1">
             <SvgIcon
-              name="location"
+              name="locationCamper"
               width={16}
               height={16}
               className="fill-(--location)"
