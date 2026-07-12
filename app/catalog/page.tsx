@@ -3,6 +3,7 @@ import FilterProvider from '@/providers/FilterProvider/FilterContext';
 import FilterList from '@/components/FilterList/FilterList';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import CampersNotFound from '@/components/CampersNotFound/CampersNotFound';
 
 export const metadata: Metadata = {
   title: 'Campers Travel Trucks - Catalog',
@@ -67,7 +68,7 @@ const Page = async ({ searchParams }: PageProps) => {
           }}>
           <FilterList />
 
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<CampersNotFound />}>
             <CamperList />
           </Suspense>
         </FilterProvider>

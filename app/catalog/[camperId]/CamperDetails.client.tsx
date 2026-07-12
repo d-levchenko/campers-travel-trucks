@@ -7,13 +7,14 @@ import DetailsBottomPart from '@/components/DetailsBottomPart/DetailsBottomPart'
 import ErrorPage from '../error';
 
 import css from './CamperDetails.module.css';
+import Loader from '@/components/Loader/Loader';
 
 interface CamperDetailsClientProps {
   id: string;
 }
 
 const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
-  const { data: camper } = useQuery({
+  const { data: camper, isLoading: isCamperLoading } = useQuery({
     queryKey: ['camper', id],
     queryFn: () => getCamperById(id),
   });
@@ -24,6 +25,8 @@ const CamperDetailsClient = ({ id }: CamperDetailsClientProps) => {
   });
 
   if (camper?.statusCode === 404) return <ErrorPage />;
+
+  if (isCamperLoading) return <Loader />;
 
   return (
     <main className={css.main}>
