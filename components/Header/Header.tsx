@@ -6,7 +6,7 @@ import NavList from './NavList/NavList';
 const Header = () => {
   return (
     <header className={css.header}>
-      <Link href="/" className={css.logoLink}>
+      <Link href="/" aria-label="Main logo" className={css.logoLink}>
         <SvgIcon name="mainLogo" width={136} height={16} />
       </Link>
 

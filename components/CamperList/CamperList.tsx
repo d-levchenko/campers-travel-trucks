@@ -133,6 +133,7 @@ const CamperList = () => {
                 <Link
                   href={`/catalog/${camper.id}`}
                   target="_blank"
+                  aria-label="Show more"
                   rel="noopener noreferrer"
                   className={css.link}>
                   Show more

@@ -13,6 +13,7 @@ const NavList = () => {
         <li>
           <Link
             href="/"
+            aria-label="Main page"
             className={`${css.link} ${pathname === '/' && css.linkActive}`}>
             Home
           </Link>
@@ -20,6 +21,7 @@ const NavList = () => {
         <li>
           <Link
             href="/catalog"
+            aria-label="Catalog page"
             className={`${css.link} ${(pathname === '/catalog' || pathname.startsWith('/catalog/')) && css.linkActive}`}>
             Catalog
           </Link>

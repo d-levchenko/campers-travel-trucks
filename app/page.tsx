@@ -53,7 +53,7 @@ const Home = () => {
           You can find everything you want in our catalog
         </p>
 
-        <Link href="/catalog" className={css.link}>
+        <Link href="/catalog" aria-label="View catalog" className={css.link}>
           View Now
         </Link>
       </section>
