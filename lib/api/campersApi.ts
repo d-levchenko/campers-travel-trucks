@@ -1,6 +1,7 @@
 import {
   AllCampers,
   BookingRequest,
+  BookingResponse,
   Camper,
   CamperDetails,
   FiltersResponse,
@@ -16,10 +17,6 @@ interface FetchCampersArgs {
   form?: string;
   transmission?: string;
   engine?: string;
-}
-
-interface BookingResponse {
-  message: string;
 }
 
 export const getAllCampers = async ({

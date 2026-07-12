@@ -4,7 +4,12 @@ import SvgIcon from '@/components/SvgIcon/SvgIcon';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { sendBookingRequest } from '@/lib/api/campersApi';
-import { BookingRequest, CamperDetails } from '@/types/campers';
+import {
+  BookingRequest,
+  CamperDetails,
+  BookingResponse,
+} from '@/types/campers';
+import toast from 'react-hot-toast';
 
 import css from './DetailsRightBottomSide.module.css';
 
@@ -24,6 +29,12 @@ const DetailsRightBottomSide = ({ camperId }: DetailsRightBottomSideProps) => {
   const mutation = useMutation({
     mutationFn: (booking: BookingRequest) =>
       sendBookingRequest(camperId.id, booking),
+    onSuccess: (message: BookingResponse) => {
+      toast.success(message.message, {
+        duration: 3000,
+        position: 'top-right',
+      });
+    },
   });
 
   const validate = () => {
@@ -97,7 +108,7 @@ const DetailsRightBottomSide = ({ camperId }: DetailsRightBottomSideProps) => {
           <input
             id="name"
             type="text"
-            className={css.input}
+            className={`${css.input} ${css.nameInput}`}
             value={name}
             onChange={handleNameChange}
             placeholder=" "
@@ -125,7 +136,7 @@ const DetailsRightBottomSide = ({ camperId }: DetailsRightBottomSideProps) => {
           <input
             id="email"
             type="email"
-            className={css.input}
+            className={`${css.input} ${css.emailInput}`}
             value={email}
             onChange={handleEmailChange}
             placeholder=" "
